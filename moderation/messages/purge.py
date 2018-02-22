@@ -1,8 +1,10 @@
-﻿import arrow
+﻿import asyncio
+
+import arrow
 import discord
-import asyncio
-from sigma.core.utilities.server_bound_logging import log_event
+
 from sigma.core.utilities.data_processing import user_avatar
+from sigma.core.utilities.server_bound_logging import log_event
 
 
 def generate_log_embed(message, target, channel, deleted):
@@ -22,6 +24,7 @@ def generate_log_embed(message, target, channel, deleted):
     return response
 
 
+# noinspection PyBroadException
 async def purge(cmd, message, args):
     if not message.author.permissions_in(message.channel).manage_messages:
         response = discord.Embed(title='⛔ Access Denied. Manage Messages needed.', color=0xBE1931)

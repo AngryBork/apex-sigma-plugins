@@ -1,8 +1,9 @@
 ﻿import arrow
 import discord
+
+from sigma.core.utilities.data_processing import user_avatar
 from sigma.core.utilities.permission_processing import hierarchy_permit
 from sigma.core.utilities.server_bound_logging import log_event
-from sigma.core.utilities.data_processing import user_avatar
 
 
 def generate_log_embed(message, target, args):
@@ -17,6 +18,7 @@ def generate_log_embed(message, target, args):
         log_embed.add_field(name='📄 Reason', value=f"```\n{' '.join(args[1:])}\n```", inline=False)
     log_embed.set_footer(text=f'UserID: {target.id}')
     return log_embed
+
 
 async def textunmute(cmd, message, args):
     if not message.author.permissions_in(message.channel).manage_messages:

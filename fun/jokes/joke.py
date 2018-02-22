@@ -1,9 +1,10 @@
 import json
-import ftfy
 import secrets
+
 import aiohttp
 import discord
-from lxml import html as l
+import ftfy
+from lxml import html
 
 
 async def joke(cmd, message, args):
@@ -17,7 +18,7 @@ async def joke(cmd, message, args):
     async with aiohttp.ClientSession() as session:
         async with session.get(joke_page_url) as data:
             page_data = await data.text()
-    root = l.fromstring(page_data)
+    root = html.fromstring(page_data)
     content = root.cssselect('.content_wrap')[0]
     joke_text = ''
     for element in content.cssselect('p'):

@@ -52,15 +52,4 @@ commands:
       Such as warns, bans, muting members and pruning channels.
       To disable the logging channel, input "disable" as the channel argument.
 
-  - name:         logedits
-    global:       true
-    enabled:      true
-    usage:        "{pfx}{cmd}"
-    description:
-      Toggles if message editing should be logged in the server's logging channel.
 
-events:
-  - name:         edit_logger
-    type:         message_edit
-    global:       true
-    enabled:      true

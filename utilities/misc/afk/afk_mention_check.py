@@ -1,4 +1,6 @@
-﻿import arrow
+﻿import asyncio
+
+import arrow
 import discord
 
 
@@ -25,4 +27,9 @@ async def afk_mention_check(ev, message):
                                        value=f'Reason: {afk_reason}\nWent AFK: {afk_time}')
                     if url:
                         response.set_image(url=url)
-                    await message.channel.send(embed=response)
+                    afk_notify = await message.channel.send(embed=response)
+                    await asyncio.sleep(5)
+                    try:
+                        await afk_notify.delete()
+                    except discord.NotFound:
+                        pass

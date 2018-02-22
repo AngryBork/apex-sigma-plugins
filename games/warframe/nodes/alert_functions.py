@@ -1,8 +1,8 @@
 import datetime
-import aiohttp
-import discord
-import arrow
 
+import aiohttp
+import arrow
+import discord
 
 aura_list = [
     'brief respite', 'corrosive projection', 'dead eye',
@@ -89,7 +89,7 @@ async def generate_alert_embed(data):
     if data['rewards']['item']:
         try:
             reward_icon = await grab_image(data['rewards']['item'])
-        except Exception:
+        except IndexError:
             reward_icon = 'http://i.imgur.com/99ennZD.png'
         alert_desc += f' + {data["rewards"]["item"]}'
     else:

@@ -1,6 +1,6 @@
-name:             Table Unflipping
+﻿name:             Table Unflipping
 
-category:         miscelanous
+category:         miscellaneous
 
 enabled:          true
 
@@ -11,6 +11,11 @@ events:
     enabled:      true
 
   - name:         press_f_adder
+    type:         message
+    global:       true
+    enabled:      true
+
+  - name:         just_monika
     type:         message
     global:       true
     enabled:      true

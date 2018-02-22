@@ -1,7 +1,8 @@
-﻿import json
-import discord
+﻿import datetime
+import json
+
 import aiohttp
-import datetime
+import discord
 
 
 def time_to_seconds(time):
@@ -31,6 +32,7 @@ async def wftrials(cmd, message, args):
         if len(trial_data) == 0:
             response = discord.Embed(color=0x696969, title=f'🔍 User {username} Not Found.')
         else:
+            # noinspection PyBroadException
             try:
                 username_proper = get_usercaps(username, trial_data)
                 raidlist_url = f'https://trials.wf/player/?user={username_proper}'
@@ -142,7 +144,8 @@ async def wftrials(cmd, message, args):
                     lornm_desc = f'Total: {lornm_count}'
                     lornm_desc += f'\nWin/Lose: {lornm_won}/{lornm_failed}'
                     lornm_desc += f'\nTotal Time: {str(datetime.timedelta(seconds=lornm_time_total))}'
-                    lornm_desc += f'\nAverage Time: {str(datetime.timedelta(seconds=(lornm_time_total // lornm_count)))}'
+                    lornm_avg_sec = lornm_time_total // lornm_count
+                    lornm_desc += f'\nAverage Time: {str(datetime.timedelta(seconds=lornm_avg_sec))}'
                     lornm_desc += f'\nShortest Time: {str(datetime.timedelta(seconds=lornm_time_short))}'
                     lornm_desc += f'\nKills: {lornm_kills}'
                     lornm_desc += f'\nAverage Kills: {lornm_kills // lornm_count}'
@@ -175,7 +178,6 @@ async def wftrials(cmd, message, args):
                     total_desc += f'\nAverage Deaths: {total_deaths // total_count}'
                 except ZeroDivisionError:
                     total_desc = 'Invalid Data'
-
                 response = discord.Embed(color=0xa12626)
                 response.set_thumbnail(url='https://i.imgur.com/pf89nIk.png')
                 response.set_author(name=username_proper, icon_url='https://i.imgur.com/n0EESkn.png', url=raidlist_url)
@@ -184,6 +186,6 @@ async def wftrials(cmd, message, args):
                 response.add_field(name='Jordas Verdict', value=jv_desc)
                 response.add_field(name='Total Trials', value=total_desc)
             except Exception:
-                response = discord.Embed(color=0xFFCC4D,
-                                         title=f'⚠ Stats for {username} were found but cotained errors.')
+                error_text = f'⚠ Stats for {username} were found but cotained errors.'
+                response = discord.Embed(color=0xFFCC4D, title=error_text)
         await message.channel.send(embed=response)

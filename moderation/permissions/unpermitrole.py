@@ -1,6 +1,7 @@
 ﻿import discord
-from .nodes.permission_data import get_all_perms, generate_cmd_data
+
 from sigma.core.utilities.role_processing import matching_role
+from .nodes.permission_data import get_all_perms, generate_cmd_data
 
 
 async def unpermitrole(cmd, message, args):
@@ -15,7 +16,7 @@ async def unpermitrole(cmd, message, args):
                     error_response = discord.Embed(color=0xBE1931, title='❗ Bad Input')
                     try:
                         perm_mode, cmd_name = args[0].split(':')
-                    except Exception:
+                    except ValueError:
                         await message.channel.send(embed=error_response)
                         return
                     cmd_name = cmd_name.lower()

@@ -1,11 +1,13 @@
-﻿import discord
-import inspect
+﻿import inspect
+
+import discord
 
 
 async def evaluate(cmd, message, args):
     if not args:
         status = discord.Embed(color=0xBE1931, title='❗ Nothing Inputted To Process')
     else:
+        # noinspection PyBroadException
         try:
             execution = " ".join(args)
             output = eval(execution)

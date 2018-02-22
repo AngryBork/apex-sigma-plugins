@@ -1,8 +1,9 @@
 import datetime
-import discord
+import json
+
 import aiohttp
 import arrow
-import json
+import discord
 
 tier_names = {
     'VoidT1': 'Lith',
@@ -11,6 +12,7 @@ tier_names = {
     'VoidT4': 'Axi'
 }
 fissure_icon = 'https://i.imgur.com/vANGxqe.png'
+
 
 async def wffissures(cmd, message, args):
     fissure_url = 'https://deathsnacks.com/wf/data/activemissions.json'

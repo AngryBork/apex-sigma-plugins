@@ -1,7 +1,8 @@
 import discord
-from .nodes.item_core import ItemCore
-from sigma.core.utilities.data_processing import user_avatar
 from humanfriendly.tables import format_pretty_table as boop
+
+from sigma.core.utilities.data_processing import user_avatar
+from .nodes.item_core import ItemCore
 
 item_core = None
 
@@ -39,7 +40,7 @@ async def inventorystats(cmd, message, args):
                 rare_count = 0
             rare_count += 1
             rarity_dict.update({item_o_item.rarity_name: rare_count})
-        type_keys = ['fish', 'plant']
+        type_keys = ['fish', 'plant', 'animal']
         type_list = []
         for type_key in type_keys:
             if type_key in type_dict:

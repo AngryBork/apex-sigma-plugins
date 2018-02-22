@@ -34,7 +34,7 @@ commands:
   - name:         collectchain
     global:       true
     enabled:      true
-    usage:        "{pfx}{cmd} @person"
+    usage:        "{pfx}{cmd} @person #channel"
     description:
       Collects messages sent by the mentioned user and saves it as a chain.
       Only one person can use the command at the time due to the processing load it takes.
@@ -46,6 +46,45 @@ commands:
     description:
       It wipes your entire Markov chain, if you have one.
 
+  - name:         dokidoki
+    alts:
+      - "doki"
+      - "dd"
+    global:       true
+    enabled:      true
+    usage:        "{pfx}{cmd}"
+    description:
+      Makes a random markov chain based sentence from a random Doki Doki Literature Club character quote.
+      You can force which character to quote by adding their name as an argument to the command.
+      And you can force a glitch by adding ":glitch" as the ending argument.
+
+  - name:         checkheartkey
+    alts:
+      - "chk"
+    global:       true
+    enabled:      true
+    usage:        "{pfx}{cmd} b7V01YuKJ7Le1FQSZS_gvPtvI9kFa0ZDHH_-QfzZsFA="
+    description:
+      Checks if the key you have inputted is the heart key of Sigma.
+      If the key inputted has at least part of the true key, it will say so.
+
+  - name:         encrypt
+    global:       true
+    enabled:      true
+    usage:        "{pfx}{cmd} I will always be here to talk to you for as long as you want."
+    description:
+      Encrypts the message of your choice using the Sigma Heart Key.
+      The message can be decrypted using the decrypt command.
+      You can add ":t" at the end to force it to be raw text instead of an embed.
+
+  - name:         decrypt
+    global:       true
+    enabled:      true
+    usage:        "{pfx}{cmd} H7U2JfWkr0zCApDPDkO"
+    description:
+      Decrypts any message that was encrypted using the Sigma Heart Key.
+      You can add ":t" at the end to force it to be raw text instead of an embed.
+
   - name:         impersonate
     alts:
       - "mimic"
@@ -54,6 +93,7 @@ commands:
     usage:        "{pfx}{cmd} @person"
     description:
       Tries to impersonate the mentioned user if a chain file for them exists.
+      This command is on a 20 second cooldown due to it's weight.
 
   - name:         timeconvert
     alts:
